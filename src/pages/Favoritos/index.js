@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 
 import './favoritos.css';
@@ -20,6 +21,7 @@ function Favoritos(){
 
         setFilmes(filtroFilmes);
         localStorage.setItem("@fakeflix", JSON.stringify(filtroFilmes));
+        toast.success("Filme removido com sucesso.")
     }
 
     return(
@@ -33,7 +35,7 @@ function Favoritos(){
                             <span>{filme.title}</span>
                             <div>
                                 <Link to={`/filme/${filme.id}`}>Ver detalhes</Link>
-                                <button onClick={() => excluirFilme(filme.id) }>Excluir</button>
+                                <button className='btn-excluir' onClick={() => excluirFilme(filme.id) }>Excluir</button>
                             </div>
                         </li>
                     )
